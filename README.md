@@ -46,4 +46,4 @@ You need to install SimpleITK, pytorch, scikit-image, opencv, DenseInferenceWrap
 - python track.py
 - Input should be a sequence of segmented TIFF 3D image stacks. Input names should be T+3 digit number to denote time instances.
 - It will output tracked TIFF files and a txt files containing all cell/nuclei tracks. The details of the format of txt file, please refer to [celltrackingchallenge](http://celltrackingchallenge.net/)                                                    
-                                                    
+- This can be used for tracking both cells and nuclei                                                    

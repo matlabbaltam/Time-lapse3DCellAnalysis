@@ -175,8 +175,8 @@ def tracklet_fast(g1: nx.Graph, g2: nx.Graph, seg_img1: np.ndarray, seg_img2: np
                                                       time+1, list_tmp[3])
                     linelist[i-1] = new_string
 
-    filename1 = 'T' + '%0*d' % (3, time) + '.tif'
-    filename2 = 'T' + '%0*d' % (3, time+1) + '.tif'
+    filename1 = 'man_seg' + '%0*d' % (3, time) + '.tif'
+    filename2 = 'man_seg' + '%0*d' % (3, time+1) + '.tif'
 
     with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
         thread1 = executor.submit(save_img_as_tiff, seg_img1, filename1, tracksavedir)
@@ -205,7 +205,7 @@ def track_main_fast(seg_fold: str, track_fold: str):
         threshold = 100
 
         if time == 0:
-            file1 = 'T000.tif'
+            file1 = 'man_seg000.tif'
             img1 = sitk.ReadImage(os.path.join(folder2, file1))
             img1 = sitk.GetArrayFromImage(img1)
             img1_label, img1_counts = compute_unique_vals(img1, return_counts=True)
@@ -224,8 +224,8 @@ def track_main_fast(seg_fold: str, track_fold: str):
             img1 = sitk.GetImageFromArray(img1)
             sitk.WriteImage(img1, os.path.join(folder1, file1))
 
-        file1 = 'T' + '%0*d' % (3, time) + '.tif'
-        file2 = 'T' + '%0*d' % (3, time+1) + '.tif'
+        file1 = 'man_seg' + '%0*d' % (3, time) + '.tif'
+        file2 = 'man_seg' + '%0*d' % (3, time+1) + '.tif'
         path2file1 = os.path.join(folder1, file1)
         path2file2 = os.path.join(folder2, file2)
 
@@ -286,3 +286,5 @@ def track_main_fast(seg_fold: str, track_fold: str):
 
     filetxt.close()
     print('whole time sequnce running time %s' % (timing.time() - total_start_time))
+
+track_main_fast('track_test','track_results')
